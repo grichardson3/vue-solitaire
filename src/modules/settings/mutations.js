@@ -1,5 +1,5 @@
 export default {
-    registerPost(state, payload) {
+    registerSettings(state, payload) {
         state.settings.push(payload);
     },
     setSettings(state, payload) {

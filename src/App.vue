@@ -69,8 +69,6 @@ export default {
     },
     initDealCards() {
       // Initial actions for dealing cards to the field
-      console.log(this.$store.state.cards.cards);
-
       this.$store.dispatch(
         "fieldCards/initRegisterFieldCards",
         this.$store.state.cards.cards
@@ -80,7 +78,8 @@ export default {
         this.$store.dispatch("cards/deleteSingleCard", {});
       }
 
-      console.log(this.$store.state.cards.cards);
+      console.log("Deck Cards", this.$store.state.cards.cards);
+      console.log("Field Cards", this.$store.state.fieldCards.fieldCards);
     },
   },
 };

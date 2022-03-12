@@ -34,7 +34,26 @@ export default {
   },
   methods: {
     flipCard() {
-      console.log(this.$store.state.cards.cards);
+
+      for (let i = 0; i < 3; i++) {
+        this.$store.dispatch(
+          "flippedCards/registerFlippedCard",
+          this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
+        );
+      }
+
+      console.log("Draw Cards:", this.$store.state.flippedCards.flippedCards);
+
+      if (this.$store.state.settings.settings.isThreeCards) {
+        for (let i = 0; i < 3; i++) {
+          this.$store.dispatch("cards/deleteSingleCard");
+        }
+      } else {
+        this.$store.dispatch("cards/deleteSingleCard");
+      }
+
+      console.log("Deck Cards:", this.$store.state.cards.cards);
+      
     },
   },
 };

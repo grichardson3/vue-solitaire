@@ -1,5 +1,5 @@
 export default {
-    registerFlippedCards(state, payload) {
+    addFlippedCard(state, payload) {
         state.flippedCards.push(payload);
     },
     setFlippedCards(state, payload) {
