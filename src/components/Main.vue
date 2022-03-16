@@ -34,15 +34,41 @@ export default {
   },
   methods: {
     flipCard() {
-
-      for (let i = 0; i < 3; i++) {
+      if (this.$store.state.settings.settings.isThreeCards) {
+        if (this.$store.state.cards.cards.length === 0) { // Resetting the deck
+          for (let i = 0; i < (this.$store.state.flippedCards.flippedCards.length - 1); i++) {
+            this.$store.dispatch(
+              "cards/registerCard",
+              this.$store.state.flippedCards.flippedCards[this.$store.state.flippedCards.flippedCards.length - 1 - i]
+            );
+          }
+          this.$store.dispatch(
+            "flippedCards/deleteAllFlippedCards",
+            this.$store.state.flippedCards.flippedCards
+          );
+        } else if (this.$store.state.cards.cards.length < 3) {
+          for (let i = 0; i < (this.$store.state.cards.cards.length - 1); i++) {
+            this.$store.dispatch(
+              "flippedCards/registerFlippedCard",
+              this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
+            );
+          }
+        } else {
+          for (let i = 0; i < 3; i++) {
+            this.$store.dispatch(
+              "flippedCards/registerFlippedCard",
+              this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
+            );
+          }
+        }
+      } else {
         this.$store.dispatch(
           "flippedCards/registerFlippedCard",
-          this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
+          this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1]
         );
       }
 
-      console.log("Draw Cards:", this.$store.state.flippedCards.flippedCards);
+      console.log("Flipped Cards:", this.$store.state.flippedCards.flippedCards);
 
       if (this.$store.state.settings.settings.isThreeCards) {
         for (let i = 0; i < 3; i++) {
@@ -53,7 +79,6 @@ export default {
       }
 
       console.log("Deck Cards:", this.$store.state.cards.cards);
-      
     },
   },
 };

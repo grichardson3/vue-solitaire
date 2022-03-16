@@ -5,6 +5,12 @@ export default {
     setFlippedCards(state, payload) {
         state.flippedCards = payload;
     },
+    deleteFlippedCard(state, payload){
+        state.flippedCards = payload; // not final
+    },
+    deleteAllFlippedCards(state) {
+        state.flippedCards = [];
+    },
     setFetchTimestamp(state) {
         state.lastFetch = new Date().getTime();
     }
