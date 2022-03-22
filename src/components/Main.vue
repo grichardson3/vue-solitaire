@@ -2,7 +2,7 @@
   <div ref="main" id="container" class="container">
     <div id="topContainer" class="row">
       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        <div v-on:click="flipCard">
+        <div>
           <deck-container></deck-container>
         </div>
       </div>
@@ -33,53 +33,7 @@ export default {
     "playmat-container": PlayMat,
   },
   methods: {
-    flipCard() {
-      if (this.$store.state.settings.settings.isThreeCards) {
-        if (this.$store.state.cards.cards.length === 0) { // Resetting the deck
-          for (let i = 0; i < (this.$store.state.flippedCards.flippedCards.length - 1); i++) {
-            this.$store.dispatch(
-              "cards/registerCard",
-              this.$store.state.flippedCards.flippedCards[this.$store.state.flippedCards.flippedCards.length - 1 - i]
-            );
-          }
-          this.$store.dispatch(
-            "flippedCards/deleteAllFlippedCards",
-            this.$store.state.flippedCards.flippedCards
-          );
-        } else if (this.$store.state.cards.cards.length < 3) {
-          for (let i = 0; i < (this.$store.state.cards.cards.length - 1); i++) {
-            this.$store.dispatch(
-              "flippedCards/registerFlippedCard",
-              this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
-            );
-          }
-        } else {
-          for (let i = 0; i < 3; i++) {
-            this.$store.dispatch(
-              "flippedCards/registerFlippedCard",
-              this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1 - i]
-            );
-          }
-        }
-      } else {
-        this.$store.dispatch(
-          "flippedCards/registerFlippedCard",
-          this.$store.state.cards.cards[this.$store.state.cards.cards.length - 1]
-        );
-      }
-
-      console.log("Flipped Cards:", this.$store.state.flippedCards.flippedCards);
-
-      if (this.$store.state.settings.settings.isThreeCards) {
-        for (let i = 0; i < 3; i++) {
-          this.$store.dispatch("cards/deleteSingleCard");
-        }
-      } else {
-        this.$store.dispatch("cards/deleteSingleCard");
-      }
-
-      console.log("Deck Cards:", this.$store.state.cards.cards);
-    },
+    
   },
 };
 </script>
