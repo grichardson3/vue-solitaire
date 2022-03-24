@@ -2,9 +2,7 @@
   <div ref="main" id="container" class="container">
     <div id="topContainer" class="row">
       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        <div>
-          <deck-container></deck-container>
-        </div>
+        <deck-container></deck-container>
       </div>
       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
         <draw-container></draw-container>
@@ -31,10 +29,7 @@ export default {
     "draw-container": Draw,
     "place-container": Place,
     "playmat-container": PlayMat,
-  },
-  methods: {
-    
-  },
+  }
 };
 </script>
 

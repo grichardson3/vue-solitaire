@@ -48,6 +48,9 @@ export default {
       this.$store.dispatch("pileCards/loadPileCards", {
         forceRefresh: refresh,
       });
+      this.$store.dispatch("selectedCard/loadSelectedCard", {
+        forceRefresh: refresh,
+      });
       this.$store.dispatch("settings/loadSettings", {
         forceRefresh: refresh,
       });

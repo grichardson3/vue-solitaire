@@ -13,6 +13,7 @@ import cardDataModule from "./modules/cards/index.js";
 import fieldCardsDataModule from "./modules/fieldCards/index.js";
 import flippedCardsDataModule from "./modules/flippedCards/index.js";
 import pileCardsDataModule from "./modules/pileCards/index.js";
+import selectedCardDataModule from "./modules/selectedCard/index.js";
 import settingsDataModule from "./modules/settings/index.js";
 
 const store = createStore({
@@ -21,6 +22,7 @@ const store = createStore({
         fieldCards: fieldCardsDataModule,
         flippedCards: flippedCardsDataModule,
         pileCards: pileCardsDataModule,
+        selectedCard: selectedCardDataModule,
         settings: settingsDataModule
     },
     state(){
