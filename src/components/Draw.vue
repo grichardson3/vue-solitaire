@@ -3,7 +3,7 @@
         <button
             v-if="$store.state.flippedCards.flippedCards.length > 0"
             v-on:click="selectPileCard"
-            v-bind:class="{ card: true, selected: isSelected }"
+            v-bind:class="{ card: true, selected: $store.state.selectedCard.selectedCard.isSelected }"
         >{{ $store.state.flippedCards.flippedCards[$store.state.flippedCards.flippedCards.length - 1].readableValue}}
         </button>
         <button
@@ -22,7 +22,9 @@ export default {
     },
     methods: {
         selectPileCard(){
-            !this.isSelected ? this.isSelected = true : this.isSelected = false;
+            !this.$store.state.selectedCard.selectedCard.isSelected ?
+            this.isSelected = true :
+            this.isSelected = false;
             if (!this.isSelected) {
                 this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
                 console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);

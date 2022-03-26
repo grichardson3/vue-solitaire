@@ -9,7 +9,7 @@ export default {
         if (!payload.forceRefresh && !context.getters.shouldUpdate) {
             return;
         }
-        context.commit('setSelectedCard', {});
+        context.commit('setSelectedCard', { isSelected: false });
         context.commit('setFetchTimestamp');
     }
 };

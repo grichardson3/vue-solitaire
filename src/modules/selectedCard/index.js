@@ -7,7 +7,7 @@ export default {
     state(){
         return {
             lastFetch: null,
-            selectedCard: {}
+            selectedCard: { isSelected: false }
         }
     },
     mutations,
