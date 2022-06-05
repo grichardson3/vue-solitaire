@@ -2,6 +2,9 @@ export default {
     async registerFlippedCard (context, data) {
         context.commit('addFlippedCard', data);
     },
+    async deleteSingleSelectedFlippedCard (context, data) {
+        context.commit('deleteSelectedFlippedCard', data);
+    },
     async deleteAllFlippedCards(context){
         context.commit('deleteAllFlippedCards');
     },

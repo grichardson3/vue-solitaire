@@ -22,9 +22,7 @@ export default {
     },
     methods: {
         selectPileCard(){
-            !this.$store.state.selectedCard.selectedCard.isSelected ?
-            this.isSelected = true :
-            this.isSelected = false;
+            !this.$store.state.selectedCard.selectedCard.isSelected ? this.isSelected = true : this.isSelected = false;
             if (!this.isSelected) {
                 this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
                 console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);
