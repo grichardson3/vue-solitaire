@@ -16,7 +16,9 @@ export default {
     flipCard() {
       if (this.$store.state.settings.settings.isThreeCards) {
         if (this.$store.state.cards.cards.length === 0) { // Resetting the deck
+
           this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+
           const promise = new Promise((resolve) => {
             for (let i = 0; i < this.$store.state.flippedCards.flippedCards.length; i++) {
               this.$store.dispatch(
@@ -31,6 +33,9 @@ export default {
               "flippedCards/deleteAllFlippedCards",
               this.$store.state.flippedCards.flippedCards
             );
+
+            // this.$store.dispatch("cards/deleteSingleCard");
+
           });
           console.log("Deck Cards:", this.$store.state.cards.cards);
           console.log("Selected Card: ", this.$store.state.selectedCard.selectedCard);
@@ -71,6 +76,7 @@ export default {
             this.$store.dispatch("cards/deleteSingleCard");
           }
           console.log("Deck Cards:", this.$store.state.cards.cards);
+          console.log("Flipped Cards: ", this.$store.state.flippedCards.flippedCards);
           console.log("Selected Card: ", this.$store.state.selectedCard.selectedCard);
         }
       } else {

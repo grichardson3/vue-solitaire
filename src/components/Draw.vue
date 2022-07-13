@@ -1,15 +1,14 @@
 <template>
     <div>
         <button
-            v-if="$store.state.flippedCards.flippedCards.length > 0"
             v-on:click="selectPileCard"
             v-bind:class="{ card: true, selected: $store.state.selectedCard.selectedCard.isSelected }"
-        >{{ $store.state.flippedCards.flippedCards[$store.state.flippedCards.flippedCards.length - 1].readableValue}}
+        >{{ 
+            $store.state.flippedCards.flippedCards.length > 0 ?
+            $store.state.flippedCards.flippedCards[$store.state.flippedCards.flippedCards.length - 1].readableValue :
+            "No cards"
+        }}
         </button>
-        <button
-            v-else
-            class="card"
-        >No cards</button>
     </div>
 </template>
 

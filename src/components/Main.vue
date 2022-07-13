@@ -121,6 +121,11 @@ import Draw from "./Draw.vue";
 import PlayMat from "./PlayMat.vue";
 
 export default {
+  data(){
+    return {
+      
+    }
+  },
   components: {
     "deck-container": Deck,
     "draw-container": Draw,
@@ -130,7 +135,7 @@ export default {
   methods: {
     placeCard(index){
       // console.log("Card being placed:", this.suite);
-      // console.log("Selected Card: ", this.$store.state.selectedCard.selectedCard);
+      console.log("Selected Card: ", this.$store.state.selectedCard.selectedCard);
       if (this.$store.state.selectedCard.selectedCard.isSelected) {
         switch (index) {
           case 0:
@@ -145,10 +150,17 @@ export default {
                 resolve("Success");
               });
               promise.then(() => {
-                this.$store.dispatch("flippedCards/deleteSingleSelectedFlippedCard", this.$store.state.selectedCard.selectedCard);
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
               })
               .then(() => {
+                // console.log("Final Flipped Cards", this.$store.state.flippedCards.flippedCards);
                 this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
               });
             }
             // console.log(this.$store.state.pileCards.pileCards);

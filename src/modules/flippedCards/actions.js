@@ -3,7 +3,7 @@ export default {
         context.commit('addFlippedCard', data);
     },
     async deleteSingleSelectedFlippedCard (context, data) {
-        context.commit('deleteSelectedFlippedCard', data);
+        context.commit('deleteSelectedFlippedCard', data.id);
     },
     async deleteAllFlippedCards(context){
         context.commit('deleteAllFlippedCards');
