@@ -13,27 +13,27 @@
 </template>
 
 <script>
-export default {
-    data(){
-        return {
-            isSelected: false
-        }
-    },
-    methods: {
-        selectPileCard(){
-            !this.$store.state.selectedCard.selectedCard.isSelected ? this.isSelected = true : this.isSelected = false;
-            if (!this.isSelected) {
-                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
-                console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);
-            } else {
-                this.$store.dispatch(
-                    "selectedCard/registerSelectedCard",
-                    this.$store.state.flippedCards.flippedCards[this.$store.state.flippedCards.flippedCards.length - 1]
-                );
-                console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);
+    export default {
+        data(){
+            return {
+                isSelected: false
+            }
+        },
+        methods: {
+            selectPileCard(){
+                !this.$store.state.selectedCard.selectedCard.isSelected ? this.isSelected = true : this.isSelected = false;
+                if (!this.isSelected) {
+                    this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+                    console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);
+                } else if (this.$store.state.flippedCards.flippedCards.length !== 0) {
+                    this.$store.dispatch(
+                        "selectedCard/registerSelectedCard",
+                        this.$store.state.flippedCards.flippedCards[this.$store.state.flippedCards.flippedCards.length - 1]
+                    );
+                    console.log("Selected Card:", this.$store.state.selectedCard.selectedCard);
+                }
             }
         }
     }
-}
 </script>
 
