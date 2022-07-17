@@ -54,7 +54,7 @@
             >
                 {{
                     $store.state.pileCards.pileCards[1].length !== 0 ?
-                    $store.state.pileCards.pileCards[1][$store.state.pileCards.pileCards[0].length - 1].readableValue :
+                    $store.state.pileCards.pileCards[1][$store.state.pileCards.pileCards[1].length - 1].readableValue :
                     "Diamonds"
                 }}
             </button>
@@ -77,7 +77,7 @@
             >
                 {{
                     $store.state.pileCards.pileCards[2].length !== 0 ?
-                    $store.state.pileCards.pileCards[2][$store.state.pileCards.pileCards[0].length - 1].readableValue :
+                    $store.state.pileCards.pileCards[2][$store.state.pileCards.pileCards[2].length - 1].readableValue :
                     "Clubs"
                 }}
             </button>
@@ -100,7 +100,7 @@
             >
                 {{
                     $store.state.pileCards.pileCards[3].length !== 0 ?
-                    $store.state.pileCards.pileCards[3][$store.state.pileCards.pileCards[0].length - 1].readableValue :
+                    $store.state.pileCards.pileCards[3][$store.state.pileCards.pileCards[3].length - 1].readableValue :
                     "Spades"
                 }}
             </button>
@@ -139,9 +139,158 @@ export default {
       if (this.$store.state.selectedCard.selectedCard.isSelected) {
         switch (index) {
           case 0:
-            if (this.$store.state.pileCards.pileCards[0].length === 0 &&
-            this.$store.state.selectedCard.selectedCard.value === 1 && 
-            this.$store.state.selectedCard.selectedCard.suite === "hearts") {
+            if (
+              this.$store.state.pileCards.pileCards[0].length === 0 &&
+              this.$store.state.selectedCard.selectedCard.value === 1 && 
+              this.$store.state.selectedCard.selectedCard.suite === "hearts"
+            ) {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsHearts",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            } else if (
+              this.$store.state.selectedCard.selectedCard.value === (this.$store.state.pileCards.pileCards[0].length + 1) && 
+              this.$store.state.selectedCard.selectedCard.suite === "hearts"
+            ) {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsHearts",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            }
+            break;
+          case 1:
+            if (this.$store.state.pileCards.pileCards[1].length === 0 &&
+            this.$store.state.selectedCard.selectedCard.value === 1 &&
+            this.$store.state.selectedCard.selectedCard.suite === "diamonds") {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsDiamonds",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            } else if (
+              this.$store.state.selectedCard.selectedCard.value === (this.$store.state.pileCards.pileCards[1].length + 1) && 
+              this.$store.state.selectedCard.selectedCard.suite === "diamonds"
+            ) {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsDiamonds",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            }
+            // console.log(this.$store.state.pileCards.pileCards);
+            break;
+          case 2:
+            if (this.$store.state.pileCards.pileCards[2].length === 0 &&
+            this.$store.state.selectedCard.selectedCard.value === 1 &&
+            this.$store.state.selectedCard.selectedCard.suite === "clubs") {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsClubs",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                // console.log("Final Flipped Cards", this.$store.state.flippedCards.flippedCards);
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            } else if (
+              this.$store.state.selectedCard.selectedCard.value === (this.$store.state.pileCards.pileCards[2].length + 1) && 
+              this.$store.state.selectedCard.selectedCard.suite === "clubs"
+            ) {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsClubs",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
+            }
+            // console.log(this.$store.state.pileCards.pileCards);
+            break;
+          case 3:
+            if (this.$store.state.pileCards.pileCards[3].length === 0 &&
+            this.$store.state.selectedCard.selectedCard.value === 1 &&
+            this.$store.state.selectedCard.selectedCard.suite === "spades") {
               const promise = new Promise((resolve) => {
                 this.$store.dispatch(
                   "pileCards/registerPileCardAsHearts",
@@ -162,43 +311,33 @@ export default {
               .then(() => {
                 this.$store.dispatch("cards/deleteSingleCard");
               });
+            } else if (
+              this.$store.state.selectedCard.selectedCard.value === (this.$store.state.pileCards.pileCards[3].length + 1) && 
+              this.$store.state.selectedCard.selectedCard.suite === "spades"
+            ) {
+              const promise = new Promise((resolve) => {
+                this.$store.dispatch(
+                  "pileCards/registerPileCardAsSpades",
+                  this.$store.state.selectedCard.selectedCard
+                );
+                resolve("Success");
+              });
+              promise.then(() => {
+                this.$store.dispatch(
+                  "flippedCards/deleteSingleSelectedFlippedCard",
+                  this.$store.state.selectedCard.selectedCard
+                );
+              })
+              .then(() => {
+                this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
+              })
+              .then(() => {
+                this.$store.dispatch("cards/deleteSingleCard");
+              });
             }
             // console.log(this.$store.state.pileCards.pileCards);
             break;
-          case 1:
-            (this.$store.state.pileCards.pileCards[1].length === 0 &&
-            this.$store.state.selectedCard.selectedCard.value === 1 &&
-            this.$store.state.selectedCard.selectedCard.suite === "diamonds")
-            ? this.$store.dispatch(
-              "pileCards/registerPileCardAsDiamonds",
-              this.$store.state.selectedCard.selectedCard
-            )
-            : null;
-            // console.log(this.$store.state.pileCards.pileCards);
-            break;
-          case 2:
-            (this.$store.state.pileCards.pileCards[2].length === 0 &&
-            this.$store.state.selectedCard.selectedCard.value === 1 &&
-            this.$store.state.selectedCard.selectedCard.suite === "clubs")
-            ? this.$store.dispatch(
-                "pileCards/registerPileCardAsClubs",
-                this.$store.state.selectedCard.selectedCard
-            )
-            : null;
-            // console.log(this.$store.state.pileCards.pileCards);
-            break;
-          case 3:
-            (this.$store.state.pileCards.pileCards[3].length === 0 &&
-            this.$store.state.selectedCard.selectedCard.value === 1 &&
-            this.$store.state.selectedCard.selectedCard.suite === "spades")
-            ? this.$store.dispatch(
-                "pileCards/registerPileCardAsSpades",
-                this.$store.state.selectedCard.selectedCard
-            )
-            : null;
-            // console.log(this.$store.state.pileCards.pileCards);
-            break;
-          }
+        }
       }
     }
   }

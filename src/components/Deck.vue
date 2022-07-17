@@ -40,7 +40,7 @@ export default {
           console.log("Deck Cards:", this.$store.state.cards.cards);
           console.log("Selected Card: ", this.$store.state.selectedCard.selectedCard);
         } else if (this.$store.state.cards.cards.length < 3) {
-
+          
           this.$store.dispatch("selectedCard/deleteSingleSelectedCard");
 
           for (let i = 0; i < (this.$store.state.cards.cards.length - 1); i++) {
